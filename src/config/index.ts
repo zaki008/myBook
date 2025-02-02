@@ -1,6 +1,6 @@
 const BASE_URL = {
   baseApiDev: "http://localhost:3000/api/",
-  baseApiProd: "https://book-shelf-project-beryl.vercel.app/api/",
+  baseApiProd: "https://my-book-cyan.vercel.app/api/",
 };
 
 const API_HOST =
