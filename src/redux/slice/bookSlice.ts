@@ -15,6 +15,7 @@ export interface BookState {
   message: string | null | unknown;
   title: string;
   status: bookStatus | string;
+  isLoadDetail: boolean;
   dataBook: Partial<book>;
 }
 
@@ -28,6 +29,7 @@ const initialState: BookState = {
   title: "",
   status: "",
   dataBook: {},
+  isLoadDetail: false,
 };
 
 const bookSlice = createSlice({
@@ -113,16 +115,16 @@ const bookSlice = createSlice({
 
     builder.addCase(getBookById.pending, (state) => {
       state.isError = true;
-      state.isLoading = false;
+      state.isLoadDetail = true;
     });
     builder.addCase(getBookById.fulfilled, (state, action) => {
       state.isError = true;
-      state.isLoading = false;
+      state.isLoadDetail = false;
       state.dataBook = action.payload.data;
     });
     builder.addCase(getBookById.rejected, (state) => {
       state.isError = true;
-      state.isLoading = false;
+      state.isLoadDetail = false;
     });
   },
 });

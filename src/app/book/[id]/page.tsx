@@ -13,7 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 const DetailBook = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams<{ id: string }>();
-  const { dataBook, isLoading } = useSelector((state: RootState) => state.book);
+  const { dataBook, isLoadDetail } = useSelector(
+    (state: RootState) => state.book
+  );
 
   useEffect(() => {
     dispatch(getBookById(id));
@@ -22,7 +24,7 @@ const DetailBook = () => {
   return (
     <LayoutDashboard>
       <div className="mt-3 w-full flex justify-center ">
-        {isLoading ? (
+        {isLoadDetail ? (
           <Loading />
         ) : (
           <div className="w-full lg:2/3 xl:w-1/2 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
