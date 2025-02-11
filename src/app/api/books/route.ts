@@ -20,12 +20,13 @@ export const GET = async (req: NextRequest) => {
     const { data } = authValidationResult;
     const skip = (page - 1) * size;
 
-    const filter = [];
+    const filter: Record<string, any>[] = [];
 
     if (title) {
       filter.push({
         title: {
           contains: title,
+          mode: "insensitive",
         },
       });
     }
@@ -52,6 +53,7 @@ export const GET = async (req: NextRequest) => {
 
     const totalItems = await prisma.book.count({
       where: {
+        AND: filter,
         username: data?.username,
       },
     });
